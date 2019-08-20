@@ -9,19 +9,19 @@
   <meta name="description" content="编辑AVComposition继承自 AVAsset，在视频编辑时用来表示保存音视频轨道的Container，一般使用其子类AVMutableComposition AVMutableComposition生成新视频的容器，从其他视频或者音频获取轨道，然后插入到当前容器中，如图所示： AVAudioMix &amp;amp;&amp;amp; AVMutableAudioMix对音频轨道进行自定处理，一般使用其子">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVFoundation_Edit">
-<meta property="og:url" content="https://github.com/surrenderios/surrenderios.github.io/blob/master/2019/08/20/AVFoundation-Edit/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/AVFoundation-Edit/index.html">
 <meta property="og:site_name" content="Alex">
 <meta property="og:description" content="编辑AVComposition继承自 AVAsset，在视频编辑时用来表示保存音视频轨道的Container，一般使用其子类AVMutableComposition AVMutableComposition生成新视频的容器，从其他视频或者音频获取轨道，然后插入到当前容器中，如图所示： AVAudioMix &amp;amp;&amp;amp; AVMutableAudioMix对音频轨道进行自定处理，一般使用其子">
 <meta property="og:locale" content="中文">
-<meta property="og:image" content="https://github.com/surrenderios/surrenderios.github.io/blob/master/2019/08/20/AVFoundation-Edit/AVFoundation-Edit/avmutablecomposition_2x.png">
-<meta property="og:image" content="https://github.com/surrenderios/surrenderios.github.io/blob/master/2019/08/20/AVFoundation-Edit/AVFoundation-Edit/avmutableaudiomix_2x.png">
-<meta property="og:image" content="https://github.com/surrenderios/surrenderios.github.io/blob/master/2019/08/20/AVFoundation-Edit/AVFoundation-Edit/avmutablevideocomposition_2x.png">
-<meta property="og:image" content="https://github.com/surrenderios/surrenderios.github.io/blob/master/2019/08/20/AVFoundation-Edit/AVFoundation-Edit/puttingitalltogether_2x.png">
+<meta property="og:image" content="http://yoursite/avmutablecomposition_2x.png">
+<meta property="og:image" content="http://yoursite/avmutableaudiomix_2x.png">
+<meta property="og:image" content="http://yoursite/avmutablevideocomposition_2x.png">
+<meta property="og:image" content="http://yoursite/puttingitalltogether_2x.png">
 <meta property="og:updated_time" content="2019-08-20T06:43:03.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation_Edit">
 <meta name="twitter:description" content="编辑AVComposition继承自 AVAsset，在视频编辑时用来表示保存音视频轨道的Container，一般使用其子类AVMutableComposition AVMutableComposition生成新视频的容器，从其他视频或者音频获取轨道，然后插入到当前容器中，如图所示： AVAudioMix &amp;amp;&amp;amp; AVMutableAudioMix对音频轨道进行自定处理，一般使用其子">
-<meta name="twitter:image" content="https://github.com/surrenderios/surrenderios.github.io/blob/master/2019/08/20/AVFoundation-Edit/AVFoundation-Edit/avmutablecomposition_2x.png">
+<meta name="twitter:image" content="http://yoursite/avmutablecomposition_2x.png">
   
     <link rel="alternative" href="/atom.xml" title="Alex" type="application/atom+xml">
   
@@ -227,15 +227,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h1><h2 id="AVComposition"><a href="#AVComposition" class="headerlink" title="AVComposition"></a>AVComposition</h2><p>继承自 AVAsset，在视频编辑时用来表示保存音视频轨道的Container，一般使用其子类AVMutableComposition</p>
-<h3 id="AVMutableComposition"><a href="#AVMutableComposition" class="headerlink" title="AVMutableComposition"></a>AVMutableComposition</h3><p>生成新视频的容器，从其他视频或者音频获取轨道，然后插入到当前容器中，如图所示：<br><img src="AVFoundation-Edit/avmutablecomposition_2x.png" alt></p>
+<h3 id="AVMutableComposition"><a href="#AVMutableComposition" class="headerlink" title="AVMutableComposition"></a>AVMutableComposition</h3><p>生成新视频的容器，从其他视频或者音频获取轨道，然后插入到当前容器中，如图所示：<br><img src="//yoursite/avmutablecomposition_2x.png" alt></p>
 <h3 id="AVAudioMix-amp-amp-AVMutableAudioMix"><a href="#AVAudioMix-amp-amp-AVMutableAudioMix" class="headerlink" title="AVAudioMix &amp;&amp; AVMutableAudioMix"></a>AVAudioMix &amp;&amp; AVMutableAudioMix</h3><p>对音频轨道进行自定处理，一般使用其子类AVMutableAudioMix，通过接受参数的形式 inputParameters</p>
 <h3 id="AVAudioMixInputParameters-amp-amp-AVMutableAudioMixInputParameters"><a href="#AVAudioMixInputParameters-amp-amp-AVMutableAudioMixInputParameters" class="headerlink" title="AVAudioMixInputParameters &amp;&amp; AVMutableAudioMixInputParameters"></a>AVAudioMixInputParameters &amp;&amp; AVMutableAudioMixInputParameters</h3><p>音频自定义处理参数对象，包含音量的调整和轨道信息以及音量算法</p>
-<p>音频编辑对象关系如图所示:<br><img src="AVFoundation-Edit/avmutableaudiomix_2x.png" alt></p>
+<p>音频编辑对象关系如图所示:<br><img src="//yoursite/avmutableaudiomix_2x.png" alt></p>
 <h3 id="AVVideoCompositing-amp-amp-AVMutableVideoComposition"><a href="#AVVideoCompositing-amp-amp-AVMutableVideoComposition" class="headerlink" title="AVVideoCompositing &amp;&amp; AVMutableVideoComposition"></a>AVVideoCompositing &amp;&amp; AVMutableVideoComposition</h3><p>视频合成器对象，可以通过该对象对视频进行自定义操作</p>
 <h3 id="AVVideoCompositionInstruction-amp-amp-AVMutableVideoCompositionInstruction"><a href="#AVVideoCompositionInstruction-amp-amp-AVMutableVideoCompositionInstruction" class="headerlink" title="AVVideoCompositionInstruction &amp;&amp; AVMutableVideoCompositionInstruction"></a>AVVideoCompositionInstruction &amp;&amp; AVMutableVideoCompositionInstruction</h3><p>合成器的指令对象，该指令将会被合成器运用在视频合成中</p>
 <h3 id="AVVideoCompositionLayerInstruction-amp-amp-AVMutableVideoCompositionLayerInstruction"><a href="#AVVideoCompositionLayerInstruction-amp-amp-AVMutableVideoCompositionLayerInstruction" class="headerlink" title="AVVideoCompositionLayerInstruction &amp;&amp; AVMutableVideoCompositionLayerInstruction"></a>AVVideoCompositionLayerInstruction &amp;&amp; AVMutableVideoCompositionLayerInstruction</h3><p>指令的参数对象，transform，opacity，cropping等参数的设置都会被作为指令合成到视频中</p>
-<p>合成对象的关系如下图所示：<br><img src="AVFoundation-Edit/avmutablevideocomposition_2x.png" alt></p>
-<h2 id="视频导出"><a href="#视频导出" class="headerlink" title="视频导出"></a>视频导出</h2><h3 id="AVAssetExportSession"><a href="#AVAssetExportSession" class="headerlink" title="AVAssetExportSession"></a>AVAssetExportSession</h3><p>生成一个新的资源文件根据自定义的参数和AVAsset，结构如图所示：<br><img src="AVFoundation-Edit/puttingitalltogether_2x.png" alt></p>
+<p>合成对象的关系如下图所示：<br><img src="//yoursite/avmutablevideocomposition_2x.png" alt></p>
+<h2 id="视频导出"><a href="#视频导出" class="headerlink" title="视频导出"></a>视频导出</h2><h3 id="AVAssetExportSession"><a href="#AVAssetExportSession" class="headerlink" title="AVAssetExportSession"></a>AVAssetExportSession</h3><p>生成一个新的资源文件根据自定义的参数和AVAsset，结构如图所示：<br><img src="//yoursite/puttingitalltogether_2x.png" alt></p>
 
       
     </div>
@@ -291,7 +291,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="AVFoundation-Edit" data-title="AVFoundation_Edit" data-url="https://github.com/surrenderios/surrenderios.github.io/blob/master/2019/08/20/AVFoundation-Edit/"></div>
+	<div class="ds-thread" data-thread-key="AVFoundation-Edit" data-title="AVFoundation_Edit" data-url="http://yoursite.com/2019/08/20/AVFoundation-Edit/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

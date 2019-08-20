@@ -9,7 +9,7 @@
   <meta name="description" content="iOS 使用LAME编码MP3文件编码过程将音频原始数据为PCM格式编码成可以直接播放的Mp3文件的过程,该过程使用LAME LAMELAME是做什么的？LAME是目前非常优秀的一种MP3编码引擎，在业界，转码成MP3格式的音频文件时，最常用的编码器就是LAME库 编译LAME下载： https://sourceforge.net/projects/lame/files/lame/下载编译脚本：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MP3_LAME">
-<meta property="og:url" content="https://github.com/surrenderios/surrenderios.github.io/blob/master/2018/08/10/MP3-LAME/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/10/MP3-LAME/index.html">
 <meta property="og:site_name" content="Alex">
 <meta property="og:description" content="iOS 使用LAME编码MP3文件编码过程将音频原始数据为PCM格式编码成可以直接播放的Mp3文件的过程,该过程使用LAME LAMELAME是做什么的？LAME是目前非常优秀的一种MP3编码引擎，在业界，转码成MP3格式的音频文件时，最常用的编码器就是LAME库 编译LAME下载： https://sourceforge.net/projects/lame/files/lame/下载编译脚本：">
 <meta property="og:locale" content="中文">
@@ -223,7 +223,7 @@
       
         <h1 id="iOS-使用LAME编码MP3文件"><a href="#iOS-使用LAME编码MP3文件" class="headerlink" title="iOS 使用LAME编码MP3文件"></a>iOS 使用LAME编码MP3文件</h1><h2 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h2><p>将音频原始数据为PCM格式编码成可以直接播放的Mp3文件的过程,该过程使用LAME</p>
 <h2 id="LAME"><a href="#LAME" class="headerlink" title="LAME"></a>LAME</h2><h3 id="LAME是做什么的？"><a href="#LAME是做什么的？" class="headerlink" title="LAME是做什么的？"></a>LAME是做什么的？</h3><p>LAME是目前非常优秀的一种MP3编码引擎，在业界，转码成MP3格式的音频文件时，最常用的编码器就是LAME库</p>
-<h2 id="编译LAME"><a href="#编译LAME" class="headerlink" title="编译LAME"></a>编译LAME</h2><h3 id="下载：-https-sourceforge-net-projects-lame-files-lame"><a href="#下载：-https-sourceforge-net-projects-lame-files-lame" class="headerlink" title="下载： https://sourceforge.net/projects/lame/files/lame/"></a>下载： <a href="https://sourceforge.net/projects/lame/files/lame/" target="_blank" rel="noopener">https://sourceforge.net/projects/lame/files/lame/</a></h3><h3 id="下载编译脚本：-https-github-com-kewlbear-lame-ios-build"><a href="#下载编译脚本：-https-github-com-kewlbear-lame-ios-build" class="headerlink" title="下载编译脚本： https://github.com/kewlbear/lame-ios-build"></a>下载编译脚本： <a href="https://github.com/kewlbear/lame-ios-build">https://github.com/kewlbear/lame-ios-build</a></h3><h3 id="编译："><a href="#编译：" class="headerlink" title="编译："></a>编译：</h3><ol>
+<h2 id="编译LAME"><a href="#编译LAME" class="headerlink" title="编译LAME"></a>编译LAME</h2><h3 id="下载：-https-sourceforge-net-projects-lame-files-lame"><a href="#下载：-https-sourceforge-net-projects-lame-files-lame" class="headerlink" title="下载： https://sourceforge.net/projects/lame/files/lame/"></a>下载： <a href="https://sourceforge.net/projects/lame/files/lame/" target="_blank" rel="noopener">https://sourceforge.net/projects/lame/files/lame/</a></h3><h3 id="下载编译脚本：-https-github-com-kewlbear-lame-ios-build"><a href="#下载编译脚本：-https-github-com-kewlbear-lame-ios-build" class="headerlink" title="下载编译脚本： https://github.com/kewlbear/lame-ios-build"></a>下载编译脚本： <a href="https://github.com/kewlbear/lame-ios-build" target="_blank" rel="noopener">https://github.com/kewlbear/lame-ios-build</a></h3><h3 id="编译："><a href="#编译：" class="headerlink" title="编译："></a>编译：</h3><ol>
 <li>将下载的文件放入同一个文件夹</li>
 <li>修改 build-lame.sh 的 SOURCE=”xxx”, XXX为lame解压后的文件夹名字</li>
 <li>终端命令行执行 ./build-lame.sh</li>
@@ -269,7 +269,7 @@ NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;finished&quot;);    </code>
 <h2 id="其它常用库编译"><a href="#其它常用库编译" class="headerlink" title="其它常用库编译"></a>其它常用库编译</h2><p><strong>buid fdk-acc</strong></p>
 <ol>
 <li>download fdk-acc by ‘git clone <a href="https://git.code.sf.net/p/opencore-amr/fdk-aac" target="_blank" rel="noopener">https://git.code.sf.net/p/opencore-amr/fdk-aac</a> opencore-amr-fdk-aac’</li>
-<li>download build script by ‘git clone <a href="https://github.com/kewlbear/fdk-aac-build-script-for-iOS&#39;">https://github.com/kewlbear/fdk-aac-build-script-for-iOS&#39;</a></li>
+<li>download build script by ‘git clone <a href="https://github.com/kewlbear/fdk-aac-build-script-for-iOS&#39;" target="_blank" rel="noopener">https://github.com/kewlbear/fdk-aac-build-script-for-iOS&#39;</a></li>
 <li>modify build-fdk-acc.sh, let SOURCE=”xxx” ,xxx is the name of fdk-acc foler</li>
 <li>cd xxx, user terminal input ‘autoreconf -i’,and press enter</li>
 <li>cd ..</li>
@@ -278,7 +278,7 @@ NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;finished&quot;);    </code>
 <p><strong>x264</strong></p>
 <ol>
 <li>git clone <a href="http://git.videolan.org/git/x264.git" target="_blank" rel="noopener">http://git.videolan.org/git/x264.git</a></li>
-<li><a href="https://github.com/kewlbear/x264-ios.git">https://github.com/kewlbear/x264-ios.git</a></li>
+<li><a href="https://github.com/kewlbear/x264-ios.git" target="_blank" rel="noopener">https://github.com/kewlbear/x264-ios.git</a></li>
 <li>build same with lame and fdk-acc</li>
 </ol>
 
@@ -336,7 +336,7 @@ NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;finished&quot;);    </code>
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="MP3-LAME" data-title="MP3_LAME" data-url="https://github.com/surrenderios/surrenderios.github.io/blob/master/2018/08/10/MP3-LAME/"></div>
+	<div class="ds-thread" data-thread-key="MP3-LAME" data-title="MP3_LAME" data-url="http://yoursite.com/2018/08/10/MP3-LAME/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
