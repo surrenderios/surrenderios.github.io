@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Xcode_Localized_App | Alex</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文翻译来自http://code.tutsplus.com/tutorials/localizing-an-ios-application-in-xcode-6--cms-23502转载请注明，谢谢！ 转化iOS应用程序到不同的语言可以分为2步 第一步就是列出所有需要显示的文字，图片，以及其它代码和storyboards(后面直接译为故事板)需要被转化的。这个步骤叫做国际化。在国际化App值后，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xcode_Localized_App">
+<meta property="og:url" content="http://yoursite.com/2015/04/14/Xcode-Localized-App/index.html">
+<meta property="og:site_name" content="Alex">
+<meta property="og:description" content="本文翻译来自http://code.tutsplus.com/tutorials/localizing-an-ios-application-in-xcode-6--cms-23502转载请注明，谢谢！ 转化iOS应用程序到不同的语言可以分为2步 第一步就是列出所有需要显示的文字，图片，以及其它代码和storyboards(后面直接译为故事板)需要被转化的。这个步骤叫做国际化。在国际化App值后，">
+<meta property="og:locale" content="中文">
+<meta property="og:updated_time" content="2019-08-20T06:24:55.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Xcode_Localized_App">
+<meta name="twitter:description" content="本文翻译来自http://code.tutsplus.com/tutorials/localizing-an-ios-application-in-xcode-6--cms-23502转载请注明，谢谢！ 转化iOS应用程序到不同的语言可以分为2步 第一步就是列出所有需要显示的文字，图片，以及其它代码和storyboards(后面直接译为故事板)需要被转化的。这个步骤叫做国际化。在国际化App值后，">
+  
+    <link rel="alternative" href="/atom.xml" title="Alex" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/me.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Alex Wu</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>About</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/surrenderios" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/u/2439892130/home?wvr=5&lf=reg" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="http://blog.csdn.net/u012972257" title="rss">rss</a>
+					        
+								<a class="mail" target="_blank" href="mailto:surrenderios@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/u012972257">CSDN的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">什么都不要问，我什么都不会说的！</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Alex Wu</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/me.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Alex Wu</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/surrenderios" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/u/2439892130/home?wvr=5&lf=reg" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="http://blog.csdn.net/u012972257" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="mailto:surrenderios@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Xcode-Localized-App" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/14/Xcode-Localized-App/" class="article-date">
+  	<time datetime="2015-04-14T04:16:53.000Z" itemprop="datePublished">2015-04-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Xcode_Localized_App
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文翻译来自<br><a href="http://code.tutsplus.com/tutorials/localizing-an-ios-application-in-xcode-6--cms-23502" target="_blank" rel="noopener">http://code.tutsplus.com/tutorials/localizing-an-ios-application-in-xcode-6--cms-23502</a>转载请注明，谢谢！</p>
+<p>转化iOS应用程序到不同的语言可以分为2步</p>
+<p>第一步就是列出所有需要显示的文字，图片，以及其它代码和storyboards(后面直接译为故事板)需要被转化的。这个步骤叫做国际化。<br>在国际化App值后，接下来是做本地化。将翻译者翻译好的资源文件导入到Xcode中,没有意外的话，App就已经能够支持其它语言了。</p>
+<ol>
+<li>设置</li>
+</ol>
+<p>我们将使用一个简单的例子来实现本地化。创建一个新的工程名为LocalzationExample,接下来我们创建一个简单的用户界面来先是我们的本地化效果。在Main.Storyboard中，添加一个label和imageView,改变label的文字为”Hello,World!”. 下载链接中的资源文件，然后添加到你的Xcode工程中(如果需要，请勾选Copy items if needed).然后设置ImageView的image为当前添加的图片,确保勾选Center Horizontaly in Container.</p>
+<p>你也应当知道如何本地化代码中的文字,在AppDelegate.m的<code>applicationDidFinishLaunching</code>中</p>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ {
+    NSLog(@&quot;Hello, World!&quot;);
+    return YES;
+}</code></pre><p>这样我们就需要本地化三种资源，image，label，以及代码中的文字</p>
+<ol start="2">
+<li>国际化</li>
+</ol>
+<p>第一步: 故事版设置<br>选中LocalizationExamle然后在Localizations下面点击”+”，然后选择Spanish(es).然后就将会弹出一个窗口，确保选中了Main.Storyboard和LaunchScreen.xib，然后点击Finished</p>
+<p>然后你会发现在Main.Storyborad 下面出现了一个base和一个Spanish文件.</p>
+<p>第二步: 设置代码中的国际化</p>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
+{
+    NSString *greeting = NSLocalizedString(@&quot;Hello, World!&quot;, @&quot;A friendly greeting&quot;);
+    NSLog(@&quot;%@&quot;, greeting);
+    return YES;
+}</code></pre><ol start="3">
+<li>本地化<br>第一步: 导出Strings文件<br>Xcode可以很见到就导出一个XML Localization Interchange File Format (.xliff)文档，选中工程，然后在菜单中点击Editor-&gt;Export For Localization，选择一个位置，然后保存</li>
+</ol>
+<p>将文件发送给你的翻译者，他们有特定的软件来打开并且翻译。此处我们直接进行修改</p>
+<p>打开文件，找到”Hello, World!”,可以看到，第一个是label的文字，第二个就是代码中的文字。然后修改target都为”Hola,Mundo!”，第二个没有就添加一个target，然后保存</p>
+<p>第二步: 导入Strings 文件<br>选中工程然后在菜单栏中点击Editor-&gt;Import Localizations 然后选中刚修改的.xliff 文件。这个时候我们就已经搞定了语言了</p>
+<p>第三步: 本地化图片<br>本地化图片要比本地化语言稍微复杂点</p>
+<p>首先选中图片，然后点击Localize按钮，然后弟那集English，选中English和Spanish2个. 然后到Xcode工程文件中打开语言对应的包，分别替换图片</p>
+<p>第四步:测试本地化</p>
+<p>修改Scheme,将程序的语言改变为Spanish和English，分别查看效果</p>
+<p>PS: 翻译过程中略掉了小部分不重要内容。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/03/Bomb-SDK/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Bomb_SDK
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/05/XML-Parse/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">XML_Parse</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Xcode-Localized-App" data-title="Xcode_Localized_App" data-url="http://yoursite.com/2015/04/14/Xcode-Localized-App/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Alex Wu
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
