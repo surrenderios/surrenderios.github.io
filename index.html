@@ -270,7 +270,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="AVAsset"><a href="#AVAsset" class="headerlink" title="AVAsset"></a>AVAsset</h1><p>AVAsset 是对资源文件的一个描述, 可以是本地文件或者网络流。结构如下：<br><img src="AVFoundation-AVAsset/avassetHierarchy_2x.png" alt></p>
+        <h1 id="AVAsset"><a href="#AVAsset" class="headerlink" title="AVAsset"></a>AVAsset</h1><p>AVAsset 是对资源文件的一个描述, 可以是本地文件或者网络流。结构如下：</p>
+<img src="/2019/08/20/AVFoundation-AVAsset/avassetHierarchy_2x.png">
+
 <h1 id="AVURLAsset"><a href="#AVURLAsset" class="headerlink" title="AVURLAsset"></a>AVURLAsset</h1><p>继承自AVAsset，代表了一个本地文件或流文件的引用，可以通过该引用对内容进行访问，例如生成某一帧的图片，转换视频质量等</p>
 <h1 id="AVFragmentedAsset"><a href="#AVFragmentedAsset" class="headerlink" title="AVFragmentedAsset"></a>AVFragmentedAsset</h1><p>继承自AVURLAsset, 可以在不改变之前数据结构的情况下，对 Asset 进行修改，支持MP4和QuickTime类型文件（iOS 12后支持）</p>
 <p>在实际使用中, 一般都是会使用其子类 AVURLAsset，当对视频进行编辑时使用 AVComposition，</p>
@@ -327,12 +329,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>AVFoundation 是 iOS/Mac OS / Watch OS 系统用于处理视频音频的上层框架,  封装了底层对设备的软硬件控制。</p>
-<p>在 iOS 中该框架的位置如下图:<br><img src="./AVFoundation/3691932-3a17b0a605bdfa18.png" alt></p>
-<img src="/2019/08/20/AVFoundation/3691932-3a17b0a605bdfa18.png" title="This is an example image">
+<p>在 iOS 中该框架的位置如下图:</p>
+<img src="/2019/08/20/AVFoundation/3691932-3a17b0a605bdfa18.png">
 
 
 <p>在 Mac OS 中该框架的位置如下图：</p>
-<img src="/2019/08/20/AVFoundation/frameworksBlockDiagramOSX_2x.png" title="This is an example image">
+<img src="/2019/08/20/AVFoundation/frameworksBlockDiagramOSX_2x.png">
 
 
 
@@ -516,8 +518,13 @@
 <h2 id="AVCaptureStillImageOutput"><a href="#AVCaptureStillImageOutput" class="headerlink" title="AVCaptureStillImageOutput"></a>AVCaptureStillImageOutput</h2><p>继承自AVCaptureOutput，以图片形式输出</p>
 <h2 id="AVCaptureVideoPreviewLayer"><a href="#AVCaptureVideoPreviewLayer" class="headerlink" title="AVCaptureVideoPreviewLayer"></a>AVCaptureVideoPreviewLayer</h2><p>继承自CALayer，可以在录制的过程中提供一个预览给用户</p>
 <h2 id="AVCaptureAudioChannel"><a href="#AVCaptureAudioChannel" class="headerlink" title="AVCaptureAudioChannel"></a>AVCaptureAudioChannel</h2><p>代表一个音频轨道，记录当前音轨的一些信息</p>
-<p>整个对象关系如下图所示：<br><img src="AVFoundation-Capture/captureOverview_2x.png" alt></p>
-<p><img src="AVFoundation-Capture/captureDetail_2x.png" alt></p>
+<p>整个对象关系如下图所示：</p>
+<img src="/2019/08/20/AVFoundation-Capture/captureOverview_2x.png">
+
+<img src="/2019/08/20/AVFoundation-Capture/captureDetail_2x.png">
+
+
+
 
       
     </div>
@@ -571,15 +578,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h1><h2 id="AVComposition"><a href="#AVComposition" class="headerlink" title="AVComposition"></a>AVComposition</h2><p>继承自 AVAsset，在视频编辑时用来表示保存音视频轨道的Container，一般使用其子类AVMutableComposition</p>
-<h3 id="AVMutableComposition"><a href="#AVMutableComposition" class="headerlink" title="AVMutableComposition"></a>AVMutableComposition</h3><p>生成新视频的容器，从其他视频或者音频获取轨道，然后插入到当前容器中，如图所示：<br><img src="AVFoundation-Edit/avmutablecomposition_2x.png" alt></p>
+<h3 id="AVMutableComposition"><a href="#AVMutableComposition" class="headerlink" title="AVMutableComposition"></a>AVMutableComposition</h3><p>生成新视频的容器，从其他视频或者音频获取轨道，然后插入到当前容器中，如图所示：</p>
+<img src="/2019/08/20/AVFoundation-Edit/avmutablecomposition_2x.png">
+
 <h3 id="AVAudioMix-amp-amp-AVMutableAudioMix"><a href="#AVAudioMix-amp-amp-AVMutableAudioMix" class="headerlink" title="AVAudioMix &amp;&amp; AVMutableAudioMix"></a>AVAudioMix &amp;&amp; AVMutableAudioMix</h3><p>对音频轨道进行自定处理，一般使用其子类AVMutableAudioMix，通过接受参数的形式 inputParameters</p>
 <h3 id="AVAudioMixInputParameters-amp-amp-AVMutableAudioMixInputParameters"><a href="#AVAudioMixInputParameters-amp-amp-AVMutableAudioMixInputParameters" class="headerlink" title="AVAudioMixInputParameters &amp;&amp; AVMutableAudioMixInputParameters"></a>AVAudioMixInputParameters &amp;&amp; AVMutableAudioMixInputParameters</h3><p>音频自定义处理参数对象，包含音量的调整和轨道信息以及音量算法</p>
-<p>音频编辑对象关系如图所示:<br><img src="AVFoundation-Edit/avmutableaudiomix_2x.png" alt></p>
+<p>音频编辑对象关系如图所示:</p>
+<img src="/2019/08/20/AVFoundation-Edit/avmutableaudiomix_2x.png">
+
+
 <h3 id="AVVideoCompositing-amp-amp-AVMutableVideoComposition"><a href="#AVVideoCompositing-amp-amp-AVMutableVideoComposition" class="headerlink" title="AVVideoCompositing &amp;&amp; AVMutableVideoComposition"></a>AVVideoCompositing &amp;&amp; AVMutableVideoComposition</h3><p>视频合成器对象，可以通过该对象对视频进行自定义操作</p>
 <h3 id="AVVideoCompositionInstruction-amp-amp-AVMutableVideoCompositionInstruction"><a href="#AVVideoCompositionInstruction-amp-amp-AVMutableVideoCompositionInstruction" class="headerlink" title="AVVideoCompositionInstruction &amp;&amp; AVMutableVideoCompositionInstruction"></a>AVVideoCompositionInstruction &amp;&amp; AVMutableVideoCompositionInstruction</h3><p>合成器的指令对象，该指令将会被合成器运用在视频合成中</p>
 <h3 id="AVVideoCompositionLayerInstruction-amp-amp-AVMutableVideoCompositionLayerInstruction"><a href="#AVVideoCompositionLayerInstruction-amp-amp-AVMutableVideoCompositionLayerInstruction" class="headerlink" title="AVVideoCompositionLayerInstruction &amp;&amp; AVMutableVideoCompositionLayerInstruction"></a>AVVideoCompositionLayerInstruction &amp;&amp; AVMutableVideoCompositionLayerInstruction</h3><p>指令的参数对象，transform，opacity，cropping等参数的设置都会被作为指令合成到视频中</p>
-<p>合成对象的关系如下图所示：<br><img src="AVFoundation-Edit/avmutablevideocomposition_2x.png" alt></p>
-<h2 id="视频导出"><a href="#视频导出" class="headerlink" title="视频导出"></a>视频导出</h2><h3 id="AVAssetExportSession"><a href="#AVAssetExportSession" class="headerlink" title="AVAssetExportSession"></a>AVAssetExportSession</h3><p>生成一个新的资源文件根据自定义的参数和AVAsset，结构如图所示：<br><img src="AVFoundation-Edit/puttingitalltogether_2x.png" alt></p>
+<p>合成对象的关系如下图所示：</p>
+<img src="/2019/08/20/AVFoundation-Edit/avmutablevideocomposition_2x.png">
+
+
+<h2 id="视频导出"><a href="#视频导出" class="headerlink" title="视频导出"></a>视频导出</h2><h3 id="AVAssetExportSession"><a href="#AVAssetExportSession" class="headerlink" title="AVAssetExportSession"></a>AVAssetExportSession</h3><p>生成一个新的资源文件根据自定义的参数和AVAsset，结构如图所示：</p>
+<img src="/2019/08/20/AVFoundation-Edit/puttingitalltogether_2x.png">
+
+
+
+
+
+
 
       
     </div>
