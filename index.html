@@ -212,7 +212,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h1><p>播放控制的对象关系如图:<br><img src="AVFoundation-Play/avplayerLayer_2x.png" alt></p>
+        <h1 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h1><p>播放控制的对象关系如图:</p>
+<img src="/2019/08/20/AVFoundation-Play/avplayerLayer_2x.png">
+
 <h3 id="AVPlayerItem"><a href="#AVPlayerItem" class="headerlink" title="AVPlayerItem"></a>AVPlayerItem</h3><p>使用 AVPlayerItem 来对 AVAsset 的播放状态进行控制</p>
 <h3 id="AVPlayerItemTrack"><a href="#AVPlayerItemTrack" class="headerlink" title="AVPlayerItemTrack"></a>AVPlayerItemTrack</h3><p>表示播放的 轨道 状态</p>
 <h3 id="AVPlayerLayer"><a href="#AVPlayerLayer" class="headerlink" title="AVPlayerLayer"></a>AVPlayerLayer</h3><p>继承自 CALayer ，对播放的视频进行展示</p>
@@ -389,7 +391,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="CMTime"><a href="#CMTime" class="headerlink" title="CMTime"></a>CMTime</h1><p>CMTime 是 CoreMedia 框架中的一个结构体，用来表示媒体的时间</p>
+<h2 id="CMTimeRange"><a href="#CMTimeRange" class="headerlink" title="CMTimeRange"></a>CMTimeRange</h2><p>表示一个范围时间段</p>
+<h2 id="AVTime"><a href="#AVTime" class="headerlink" title="AVTime"></a>AVTime</h2><p>对CMTime提供了 NSValue 和 NSCoder 的支持</p>
+
       
     </div>
     
@@ -737,8 +742,12 @@
 <li><p>调度器<br>将上面的几个模块组装起来，将输入模块和音视频队列封装到同步模块中,同步模块向外界提供数据接口,将输出模块,同步模块都封装到调度器中,这样输出模块可以向调度器要数据,调度器可以向输入模块要数据。</p>
 </li>
 </ol>
-<p>设计的结构图如下:<br><img src="Video-Player/c.png" alt></p>
-<p>类图如下:<br><img src="Video-Player/d.png" alt></p>
+<p>设计的结构图如下:</p>
+<img src="/2018/12/10/Video-Player/c.png">
+
+<p>类图如下:</p>
+<img src="/2018/12/10/Video-Player/d.png">
+
 <p><strong>VideoPlayerController</strong>: 调度器,对外提供接口<br><strong>AudioOutput</strong>: 声音模块输出渲染<br><strong>VideoOutput</strong>: 视频模块输出渲染</p>
 <p><strong>AVSynchronizer</strong>: 同步器,控制音视频同步<br><strong>VideoFrameQueue</strong>: 视频数据队列<br><strong>AudioFrameQueue</strong>: 音频数据队列</p>
 <p><strong>VideoDecoder</strong>: 解码器,解析输入的格式和协议,拆分音视频原始数据<br><strong>VideoFrame</strong>: 视频数据封装对象<br><strong>AudioFrame</strong>: 音频数据封装对象</p>
@@ -1085,7 +1094,8 @@ Content-Length: byte in body
         &lt;/u:actionNameResponse&gt;
     &lt;/s:Body&gt;
 &lt;/s:Envelope&gt;</code></pre><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>略，详细可参考<a href="https://eliyar.biz/DLNA_with_iOS_Android_Part_3_Subscribe_Event/" target="_blank" rel="noopener">订阅事件通知</a></p>
-<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="DLNA/DLNA.png" alt></p>
+<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><img src="/2018/08/20/DLNA/DLNA.png">
+
 <h2 id="iOS实现"><a href="#iOS实现" class="headerlink" title="iOS实现"></a>iOS实现</h2><p>参见<a href="https://github.com/ClaudeLi/DLNA_UPnP" target="_blank" rel="noopener">DEMO</a></p>
 
       
