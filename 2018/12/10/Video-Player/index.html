@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="Alex">
 <meta property="og:description" content="视频播放器架构设计模块划分 输入模块输入: 本地磁盘媒体文件(FLV,MP4,AVI,MOV)或者网络媒体文件(HTTP,RTMP,HLS)输入可能是不同的协议或者不同的数据格式,就需要涉及到格式解析和音视频数据拆分和解码,然后分别存储到音视频队列中  输出模块输出: 扬声器播放视频中的音频, 屏幕显示视频画面输出由2部分组成,分别是声音和视频,都需要从音视频队列中获取原始数据然后分别进行音视频的">
 <meta property="og:locale" content="中文">
-<meta property="og:image" content="http://yoursite.com/.com//c.png">
-<meta property="og:image" content="http://yoursite.com/.com//d.png">
+<meta property="og:image" content="http://yoursite/c.png">
+<meta property="og:image" content="http://yoursite/d.png">
 <meta property="og:updated_time" content="2019-08-20T06:55:15.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Video_Player">
 <meta name="twitter:description" content="视频播放器架构设计模块划分 输入模块输入: 本地磁盘媒体文件(FLV,MP4,AVI,MOV)或者网络媒体文件(HTTP,RTMP,HLS)输入可能是不同的协议或者不同的数据格式,就需要涉及到格式解析和音视频数据拆分和解码,然后分别存储到音视频队列中  输出模块输出: 扬声器播放视频中的音频, 屏幕显示视频画面输出由2部分组成,分别是声音和视频,都需要从音视频队列中获取原始数据然后分别进行音视频的">
-<meta name="twitter:image" content="http://yoursite.com/.com//c.png">
+<meta name="twitter:image" content="http://yoursite/c.png">
   
     <link rel="alternative" href="/atom.xml" title="Alex" type="application/atom+xml">
   
@@ -234,8 +234,8 @@
 <li><p>调度器<br>将上面的几个模块组装起来，将输入模块和音视频队列封装到同步模块中,同步模块向外界提供数据接口,将输出模块,同步模块都封装到调度器中,这样输出模块可以向调度器要数据,调度器可以向输入模块要数据。</p>
 </li>
 </ol>
-<p>设计的结构图如下:<br><img src="/.com//c.png" alt></p>
-<p>类图如下:<br><img src="/.com//d.png" alt></p>
+<p>设计的结构图如下:<br><img src="//yoursite/c.png" alt></p>
+<p>类图如下:<br><img src="//yoursite/d.png" alt></p>
 <p><strong>VideoPlayerController</strong>: 调度器,对外提供接口<br><strong>AudioOutput</strong>: 声音模块输出渲染<br><strong>VideoOutput</strong>: 视频模块输出渲染</p>
 <p><strong>AVSynchronizer</strong>: 同步器,控制音视频同步<br><strong>VideoFrameQueue</strong>: 视频数据队列<br><strong>AudioFrameQueue</strong>: 音频数据队列</p>
 <p><strong>VideoDecoder</strong>: 解码器,解析输入的格式和协议,拆分音视频原始数据<br><strong>VideoFrame</strong>: 视频数据封装对象<br><strong>AudioFrame</strong>: 音频数据封装对象</p>

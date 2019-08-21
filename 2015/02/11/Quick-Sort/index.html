@@ -13,18 +13,18 @@
 <meta property="og:site_name" content="Alex">
 <meta property="og:description" content="快速排序之前试着投了阿里巴巴的Mac开发，没想到居然第二天就给我打电话了。整个电话面试的过程面试官感觉很温柔的样子，问的一些技术问题工作做也基本都做过，所以没有难倒。但是当问到算法的时候，话说从毕业以后到现在，真的是很少用到算法。除了还记得冒泡排序，二分查找几个很基本的，其他的原理都已经忘记了，所以就在这儿卡壳了，晚上找了相关的资料，把面试官问到的快速排重新学习了一次，这儿写下来，做个记录。 找到">
 <meta property="og:locale" content="中文">
-<meta property="og:image" content="http://yoursite.com/.com//0.png">
-<meta property="og:image" content="http://yoursite.com/.com//1.png">
-<meta property="og:image" content="http://yoursite.com/.com//2.png">
-<meta property="og:image" content="http://yoursite.com/.com//3.png">
-<meta property="og:image" content="http://yoursite.com/.com//4.png">
-<meta property="og:image" content="http://yoursite.com/.com//5.png">
-<meta property="og:image" content="http://yoursite.com/.com//6.png">
+<meta property="og:image" content="http://yoursite/0.png">
+<meta property="og:image" content="http://yoursite/1.png">
+<meta property="og:image" content="http://yoursite/2.png">
+<meta property="og:image" content="http://yoursite/3.png">
+<meta property="og:image" content="http://yoursite/4.png">
+<meta property="og:image" content="http://yoursite/5.png">
+<meta property="og:image" content="http://yoursite/6.png">
 <meta property="og:updated_time" content="2019-08-20T06:53:05.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Quick_Sort">
 <meta name="twitter:description" content="快速排序之前试着投了阿里巴巴的Mac开发，没想到居然第二天就给我打电话了。整个电话面试的过程面试官感觉很温柔的样子，问的一些技术问题工作做也基本都做过，所以没有难倒。但是当问到算法的时候，话说从毕业以后到现在，真的是很少用到算法。除了还记得冒泡排序，二分查找几个很基本的，其他的原理都已经忘记了，所以就在这儿卡壳了，晚上找了相关的资料，把面试官问到的快速排重新学习了一次，这儿写下来，做个记录。 找到">
-<meta name="twitter:image" content="http://yoursite.com/.com//0.png">
+<meta name="twitter:image" content="http://yoursite/0.png">
   
     <link rel="alternative" href="/atom.xml" title="Alex" type="application/atom+xml">
   
@@ -231,24 +231,24 @@
       
         <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p>之前试着投了阿里巴巴的Mac开发，没想到居然第二天就给我打电话了。整个电话面试的过程面试官感觉很温柔的样子，问的一些技术问题工作做也基本都做过，所以没有难倒。但是当问到算法的时候，话说从毕业以后到现在，真的是很少用到算法。除了还记得冒泡排序，二分查找几个很基本的，其他的原理都已经忘记了，所以就在这儿卡壳了，晚上找了相关的资料，把面试官问到的快速排重新学习了一次，这儿写下来，做个记录。</p>
 <p>找到大学的书籍 &lt;数据结构与算法设计&gt;，从递归开始重新看，到分治，再到快速排序，重新读一次，感觉理解又多了一层。</p>
-<p><strong>举个例子说明快速排序：</strong><br>假设下面的表表示ABCDEFG7个人，他们代表的数字值就是身高,现在需要按照身高排列<br><img src="/.com//0.png" alt></p>
+<p><strong>举个例子说明快速排序：</strong><br>假设下面的表表示ABCDEFG7个人，他们代表的数字值就是身高,现在需要按照身高排列<br><img src="//yoursite/0.png" alt></p>
 <ol>
-<li><p>首先选择一个人来最为对比标准(一般选择队伍的第一个)，让他站出来<br>让A站出来，A的位置就空了<br><img src="/.com//1.png" alt></p>
+<li><p>首先选择一个人来最为对比标准(一般选择队伍的第一个)，让他站出来<br>让A站出来，A的位置就空了<br><img src="//yoursite/1.png" alt></p>
 </li>
-<li><p>从最后一个人开始，依次往前，和选出来对比的人比身高，如果比标准的矮，就站到空出来的位置(第一个的位置),然后结束此次对比<br>从G开始对比，比A矮就站到A的位置<br><img src="/.com//2.png" alt></p>
+<li><p>从最后一个人开始，依次往前，和选出来对比的人比身高，如果比标准的矮，就站到空出来的位置(第一个的位置),然后结束此次对比<br>从G开始对比，比A矮就站到A的位置<br><img src="//yoursite/2.png" alt></p>
 </li>
 </ol>
 <ol start="3">
-<li>然后再从前面开始, 往后。找第一个比标准高的人然后安排到空出来的位置，结束此次对比<br>B ＝ 6，比标准高，则放到最后一个<br><img src="/.com//3.png" alt></li>
+<li>然后再从前面开始, 往后。找第一个比标准高的人然后安排到空出来的位置，结束此次对比<br>B ＝ 6，比标准高，则放到最后一个<br><img src="//yoursite/3.png" alt></li>
 </ol>
 <ol start="4">
-<li>一直这样循环对比，直到最后从左往右的人在从右往左的人挨着的左边<br><img src="/.com//4.png" alt></li>
+<li>一直这样循环对比，直到最后从左往右的人在从右往左的人挨着的左边<br><img src="//yoursite/4.png" alt></li>
 </ol>
 <ol start="5">
-<li>最后把标准的那个人安插到空的那个位置<br><img src="/.com//5.png" alt></li>
+<li>最后把标准的那个人安插到空的那个位置<br><img src="//yoursite/5.png" alt></li>
 </ol>
 <ol start="6">
-<li>然后分别对标准左边和右边的人重复步骤1-5，直至最后只有1个人来比较站队,再对红色的排序  对褐色的排序，最后就达到了排序结果<br><img src="/.com//6.png" alt></li>
+<li>然后分别对标准左边和右边的人重复步骤1-5，直至最后只有1个人来比较站队,再对红色的排序  对褐色的排序，最后就达到了排序结果<br><img src="//yoursite/6.png" alt></li>
 </ol>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">void <span class="type">QuickSortArray</span>(int array[], int arrayCount)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//只有一个数的时候，就不需要排了</span></span><br><span class="line">    <span class="keyword">if</span> (arrayCount &lt; <span class="number">2</span>)  <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 先找一个对比值,一般找数组第一个数，也有取中间值的</span></span><br><span class="line">    int compareValue = array[<span class="number">0</span>];</span><br><span class="line">    </span><br><span class="line">    int <span class="keyword">left</span> = <span class="number">0</span>;</span><br><span class="line">    int <span class="keyword">right</span> = arrayCount - <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">left</span> &lt; <span class="keyword">right</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//从后面开始找，第一个比compareValue小的值，然后放到array[0]</span></span><br><span class="line">        <span class="keyword">for</span> (; <span class="keyword">left</span> &lt; <span class="keyword">right</span>; <span class="keyword">right</span> --)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[<span class="keyword">right</span>] &lt; compareValue)</span><br><span class="line">            &#123;</span><br><span class="line">                array[<span class="keyword">left</span>] = array[<span class="keyword">right</span>];</span><br><span class="line">                <span class="keyword">left</span> ++;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//从前面开始找，第一个比compareValue大的值，放到右边</span></span><br><span class="line">        <span class="keyword">for</span> (; <span class="keyword">left</span> &lt; <span class="keyword">right</span>; <span class="keyword">left</span> ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (array[<span class="keyword">left</span>] &gt; compareValue)</span><br><span class="line">            &#123;</span><br><span class="line">                array[<span class="keyword">right</span>] = array[<span class="keyword">left</span>];</span><br><span class="line">                <span class="keyword">right</span> --;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//当所有的都排完了，把最先设置的compareValue放到最后left的位置</span></span><br><span class="line">    array[<span class="keyword">left</span>] = compareValue;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//递归左边和右边的数组</span></span><br><span class="line">    <span class="type">QuickSortArray</span>(array, <span class="keyword">left</span>); <span class="comment">//从0到i的数组</span></span><br><span class="line">    <span class="type">QuickSortArray</span>(array + <span class="keyword">left</span> + <span class="number">1</span>, arrayCount - <span class="keyword">left</span> - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
