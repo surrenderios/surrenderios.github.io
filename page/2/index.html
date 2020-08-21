@@ -186,118 +186,6 @@
 
       <div class="body-wrap">
   
-    <article id="post-MP3-LAME" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/08/10/MP3-LAME/" class="article-date">
-  	<time datetime="2018-08-10T04:15:14.000Z" itemprop="datePublished">2018-08-10</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/10/MP3-LAME/">MP3_LAME</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="iOS-使用LAME编码MP3文件"><a href="#iOS-使用LAME编码MP3文件" class="headerlink" title="iOS 使用LAME编码MP3文件"></a>iOS 使用LAME编码MP3文件</h1><h2 id="编码过程"><a href="#编码过程" class="headerlink" title="编码过程"></a>编码过程</h2><p>将音频原始数据为PCM格式编码成可以直接播放的Mp3文件的过程,该过程使用LAME</p>
-<h2 id="LAME"><a href="#LAME" class="headerlink" title="LAME"></a>LAME</h2><h3 id="LAME是做什么的？"><a href="#LAME是做什么的？" class="headerlink" title="LAME是做什么的？"></a>LAME是做什么的？</h3><p>LAME是目前非常优秀的一种MP3编码引擎，在业界，转码成MP3格式的音频文件时，最常用的编码器就是LAME库</p>
-<h2 id="编译LAME"><a href="#编译LAME" class="headerlink" title="编译LAME"></a>编译LAME</h2><h3 id="下载：-https-sourceforge-net-projects-lame-files-lame"><a href="#下载：-https-sourceforge-net-projects-lame-files-lame" class="headerlink" title="下载： https://sourceforge.net/projects/lame/files/lame/"></a>下载： <a href="https://sourceforge.net/projects/lame/files/lame/" target="_blank" rel="noopener">https://sourceforge.net/projects/lame/files/lame/</a></h3><h3 id="下载编译脚本：-https-github-com-kewlbear-lame-ios-build"><a href="#下载编译脚本：-https-github-com-kewlbear-lame-ios-build" class="headerlink" title="下载编译脚本： https://github.com/kewlbear/lame-ios-build"></a>下载编译脚本： <a href="https://github.com/kewlbear/lame-ios-build" target="_blank" rel="noopener">https://github.com/kewlbear/lame-ios-build</a></h3><h3 id="编译："><a href="#编译：" class="headerlink" title="编译："></a>编译：</h3><ol>
-<li>将下载的文件放入同一个文件夹</li>
-<li>修改 build-lame.sh 的 SOURCE=”xxx”, XXX为lame解压后的文件夹名字</li>
-<li>终端命令行执行 ./build-lame.sh</li>
-<li>命令行执行完成后, fat-lame 就是编译好的文件所在</li>
-</ol>
-<h2 id="新建iOS工程"><a href="#新建iOS工程" class="headerlink" title="新建iOS工程"></a>新建iOS工程</h2><ol>
-<li>打开Xcode, 创建一个工程命名为Mp3Encoder</li>
-<li>添加编译得到的 fat-lame 库</li>
-<li>下载原始的PCM测试文件,添加到工程中,<a href="https://gitee.com/xiansanyee/codes/saix3etdh0bywm4pr9gzl38" target="_blank" rel="noopener">https://gitee.com/xiansanyee/codes/saix3etdh0bywm4pr9gzl38</a></li>
-<li>新建C++文件,命名为mp3_encoder</li>
-</ol>
-<h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的:"></a>目的:</h3><p>输入一个原始的pcm文件，然后经过LAME转换为mp3文件</p>
-<h3 id="mp3-encoder头文件"><a href="#mp3-encoder头文件" class="headerlink" title="mp3_encoder头文件"></a>mp3_encoder头文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Mp3Encoder&#123;</span><br><span class="line">private:</span><br><span class="line">    FILE *pcmFile;</span><br><span class="line">    FILE *mp3File;</span><br><span class="line">    lame_t lameClient;</span><br><span class="line">    </span><br><span class="line">public:</span><br><span class="line">    Mp3Encoder();</span><br><span class="line">    ~Mp3Encoder();</span><br><span class="line">    int Init(const char * pcmFilePath, const char *mp3FilePath, int sampleRate, int channels, int bitRate);</span><br><span class="line">    void Encode();</span><br><span class="line">    void Destory();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="mp3-encoder实现文件"><a href="#mp3-encoder实现文件" class="headerlink" title="mp3_encoder实现文件"></a>mp3_encoder实现文件</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">Mp3Encoder::Mp3Encoder()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Mp3Encoder::~Mp3Encoder()&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> Mp3Encoder::Init(<span class="keyword">const</span> <span class="keyword">char</span> *pcmFilePath, <span class="keyword">const</span> <span class="keyword">char</span> *mp3FilePath, <span class="keyword">int</span> sampleRate, <span class="keyword">int</span> channels, <span class="keyword">int</span> bitRate)&#123;</span><br><span class="line">    <span class="keyword">int</span> ret = <span class="number">-1</span>;</span><br><span class="line">    pcmFile = fopen(pcmFilePath, <span class="string">"rb"</span>);</span><br><span class="line">    <span class="keyword">if</span> (pcmFile) &#123;</span><br><span class="line">        mp3File = fopen(mp3FilePath, <span class="string">"wb"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (mp3File) &#123;</span><br><span class="line">            lameClient = lame_init();</span><br><span class="line">            lame_set_in_samplerate(lameClient, sampleRate);</span><br><span class="line">            lame_set_out_samplerate(lameClient, sampleRate);</span><br><span class="line">            lame_set_num_channels(lameClient, channels);</span><br><span class="line">            lame_set_brate(lameClient, bitRate / <span class="number">1000</span>);</span><br><span class="line">            lame_init_params(lameClient);</span><br><span class="line">            ret = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Mp3Encoder::Encode()&#123;</span><br><span class="line">    <span class="keyword">int</span> bufferSize = <span class="number">1024</span> * <span class="number">256</span>;</span><br><span class="line">    <span class="keyword">short</span> *buffer = <span class="keyword">new</span> <span class="keyword">short</span>[bufferSize / <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">short</span> *leftBuffer = <span class="keyword">new</span> <span class="keyword">short</span>[bufferSize / <span class="number">4</span>];</span><br><span class="line">    <span class="keyword">short</span> *rightBuffer = <span class="keyword">new</span> <span class="keyword">short</span>[bufferSize / <span class="number">4</span>];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> *mp3_buffer = <span class="keyword">new</span> <span class="keyword">unsigned</span> <span class="keyword">char</span>[bufferSize];</span><br><span class="line">    <span class="keyword">size_t</span> readBufferSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ((readBufferSize = fread(buffer, <span class="number">2</span>, bufferSize / <span class="number">2</span>, pcmFile)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; readBufferSize; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                leftBuffer[i / <span class="number">2</span>] = buffer[i];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                rightBuffer[i / <span class="number">2</span>] = buffer[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">size_t</span> wroteSize = lame_encode_buffer(lameClient, leftBuffer, rightBuffer, (<span class="keyword">int</span>)(readBufferSize / <span class="number">2</span>), mp3_buffer, bufferSize);</span><br><span class="line">        fwrite(mp3_buffer, <span class="number">1</span>, wroteSize, mp3File);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">delete</span>[] buffer;</span><br><span class="line">    <span class="keyword">delete</span>[] leftBuffer;</span><br><span class="line">    <span class="keyword">delete</span>[] rightBuffer;</span><br><span class="line">    <span class="keyword">delete</span>[] mp3_buffer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Mp3Encoder::Destory()&#123;</span><br><span class="line">    <span class="keyword">if</span> (pcmFile) &#123;</span><br><span class="line">        fclose(pcmFile);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (mp3File) &#123;</span><br><span class="line">        fclose(mp3File);</span><br><span class="line">        lame_close(lameClient);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><ol>
-<li><p>Main.storyboard中添加一个按钮,链接点击时间到ViewController中</p>
-<pre><code>- (IBAction)startEncode:(id)sender</code></pre></li>
-<li><p>初始化Mp3Encoder并调用进行解码</p>
-<pre><code>NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;start&quot;);
-NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@&quot;test&quot; ofType:@&quot;pcm&quot;];
-NSString *desFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-
-NSString *desPath = [desFolder stringByAppendingPathComponent:@&quot;test.mp3&quot;];
-
-const char *sp = [sourcePath cStringUsingEncoding:NSUTF8StringEncoding];
-const char *dp = [desPath cStringUsingEncoding:NSUTF8StringEncoding];
-Mp3Encoder *encoder = new Mp3Encoder();
-__unused int ret = encoder-&gt;Init(sp, dp, 44100, 2, 128 * 1240);
-encoder-&gt;Encode();
-encoder-&gt;Destory();
-NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;finished&quot;);    </code></pre></li>
-<li><p>配置C++编译支持<br>在Xcode中,target的build-seting中，other linker flags 添加 -lstdc++<br>修改ViewController.m为ViewController.mm</p>
-</li>
-<li><p>配置应用程序证书,运行,并点击按钮调用方法开始编码</p>
-</li>
-<li><p>使用Xcode-&gt;Window-&gt;Devices and Simulators, 选中应用程序, 导致AppData</p>
-</li>
-<li><p>展开AppData，找到编码好的mp3文件, 测试播放</p>
-</li>
-</ol>
-<h2 id="其它常用库编译"><a href="#其它常用库编译" class="headerlink" title="其它常用库编译"></a>其它常用库编译</h2><p><strong>buid fdk-acc</strong></p>
-<ol>
-<li>download fdk-acc by ‘git clone <a href="https://git.code.sf.net/p/opencore-amr/fdk-aac" target="_blank" rel="noopener">https://git.code.sf.net/p/opencore-amr/fdk-aac</a> opencore-amr-fdk-aac’</li>
-<li>download build script by ‘git clone <a href="https://github.com/kewlbear/fdk-aac-build-script-for-iOS&#39;" target="_blank" rel="noopener">https://github.com/kewlbear/fdk-aac-build-script-for-iOS&#39;</a></li>
-<li>modify build-fdk-acc.sh, let SOURCE=”xxx” ,xxx is the name of fdk-acc foler</li>
-<li>cd xxx, user terminal input ‘autoreconf -i’,and press enter</li>
-<li>cd ..</li>
-<li>./build-fdk-aac.sh</li>
-</ol>
-<p><strong>x264</strong></p>
-<ol>
-<li>git clone <a href="http://git.videolan.org/git/x264.git" target="_blank" rel="noopener">http://git.videolan.org/git/x264.git</a></li>
-<li><a href="https://github.com/kewlbear/x264-ios.git" target="_blank" rel="noopener">https://github.com/kewlbear/x264-ios.git</a></li>
-<li>build same with lame and fdk-acc</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-FFmpeg" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -499,75 +387,6 @@ NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;finished&quot;);    </code>
 
 
   
-    <article id="post-2018" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/01/2018/" class="article-date">
-  	<time datetime="2018-02-01T04:15:14.000Z" itemprop="datePublished">2018-02-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/01/2018/">2018</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h1><p>2018已经开始了,总结过去的一年,给新的一年自己立下新目标</p>
-<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>人生就像一只储蓄罐,你投入的每一分努力,都会在未来的某一天,回馈于你</p>
-<p>2017是忙碌的一年,全程完成了柬埔寨国家广电项目的从0到上架,参与贵州广电项目的版本,同时完成大数据统计SDK的设计和编码,一整年的时间非常紧凑。<br><img src="media/15204156088365/project.png" alt="project"></p>
-<p>除了项目开发,同时也输出了相应的文档<br><img src="media/15204156088365/document.png" alt="document"></p>
-<p>开发的过程之中,作为一名编码人员,同时输出了能够重复利用的相关模块<br><img src="media/15204156088365/module.png" alt="module"></p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><ol>
-<li>年初在老婆家举行了婚礼</li>
-<li>紧接着又开始准备5.1日在自己的婚礼</li>
-<li>7月份开始看车</li>
-<li>8月份开始收拾房子</li>
-<li>9月份搬家到新房</li>
-<li>10月份装修转租的房子</li>
-<li>然后接着老婆辞职,开始准备做小生意的相关事项<br>这一年,除掉周末的加班,感觉每个周末都在外面跑。<h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><h4 id="工作上"><a href="#工作上" class="headerlink" title="工作上"></a>工作上</h4>开发技术上的提升：经过这一年的iOS开发，接触了更多的项目需求，SDK方案的设计，在技术上相对之前有足够大的进步。从之前的功能实现到了代码的扩展，健壮和结构性清晰。<br>沟通上的进步：以前一直不明白自己的表达和听者理解的偏差存在，所以在沟通过程中很容易出现一件事情说第二次或者更多的时候，就很容易上火的情况。当理解了这一点后，也就更加审视自己在表述的是否清楚易于理解，同时也在听者询问的时候更加耐心的解释，这样下来的效果就是沟通很愉快，慢慢自己的耐心也变得更加好了。<br>项目进度的把控：之前很多时候都是一个人做一个项目，没有那么多的规划。现在当设计到多人协作的时候，就需要安排好整个需求的权重，考虑到后台以及客户的要求，开发的时间，在经历过了这一整年后, 有了很大的提高。<br>抱怨是解决不了问题的：以前自己也总是抱怨工作中这里不合理哪里不合理，同时也带给了同事消极的气氛。 这一年过来，自己几乎没有任何抱怨，只是尽自己力所能及的去解决这些问题，解决不了的问题就提出来，一起解决，实在解决不了的，就提上日程，以后解决。<br>从不同的层面看待问题：站在自己和管理层面看问题，站在不同部门来看待问题，站在公司层面来看待问题，让自己能够在问题的处理中也有了更多的思路。<br>付出总还是有一些收获的： 感谢这一年辛苦的自己，加薪和年终奖还算过得去。<h4 id="生活上"><a href="#生活上" class="headerlink" title="生活上"></a>生活上</h4>明天和意外，你永远不知道哪一个先来： 丈母娘的生病突然让人意识到了一点：“父母真的进入了老年时代了”， 病痛也可能会增多，带给我们的不仅仅是精力上的压力，还有经济上的。<br>生活中并不总是有那么多坏人，好人还是多数： 和老婆总结的时候，发现这一年接触到的都是些很友善人。在书上读到一句类似“他们对你的态度很多时候间接的就反应出了你对他们的态度”。 我想应该是老婆很友善带来的效应吧。<br>你偷懒了，多嘴了，肉会反应出来的：这一年骑车还是在继续，夏天的时候还是在游泳，所以夏天一直没有胖，但是一进入冬天，感觉真个人都不好了，骑车减少了，游泳就不超过5次，也管不住自己的嘴，一个冬天涨了10斤肉。<br>你经历过的痛苦，最终将会有所回报：2年前自己去做了牙齿矫正，一直戴着牙套2年整，过程的痛苦没有经历过的人是不能了解的，但是过年前当取掉牙套以后，感觉这2年的痛真的没有白挨，对比一下矫正前后的图片，有那种热泪盈眶的充冲动<br>如果觉得看书没用，那可能是因为看的太少：没有统计这一年看了多少本书，更多的是偏向经济方面的(突然就对这个产生了兴趣)，才发现原来自己不知道的东西那么多，多到让人羞愧<br>贵就是好（前提是不被烧）：所有的东西都可以用这个来衡量，没有例外，至少我当前这么认为<h3 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h3><h4 id="工作上-1"><a href="#工作上-1" class="headerlink" title="工作上"></a>工作上</h4>能够进入一家更大的公司,体验和学习大团队里面所用的项目流程和团队沟通方式<br>技术上能够做到更加深入,所写的代码能够服务更多的用户<h4 id="生活上-1"><a href="#生活上-1" class="headerlink" title="生活上"></a>生活上</h4></li>
-<li>能够持续的积累</li>
-<li>坚持运动</li>
-<li>更多的和家人聚在一起<br>2018，愿家人平安，顺利。</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-Private-Cocoapod" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -622,98 +441,6 @@ NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;finished&quot;);    </code>
 <ol start="9">
 <li>再找不到就删除缓存</li>
 </ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-2016" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/02/05/2016/" class="article-date">
-  	<time datetime="2017-02-05T03:55:14.000Z" itemprop="datePublished">2017-02-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/05/2016/">2016</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2016"><a href="#2016" class="headerlink" title="2016"></a>2016</h1><p>2017年上班的第一天，总结过去一年，给自己一个交代。</p>
-<h3 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h3><p>2015年7月份入职这家公司以后，就在紧张的项目开发中度过，2016也如此。 </p>
-<p>整个团队人员配置是4个iOS(包括一个Leaer)，4个安卓, 一整年非常高效做下并且维护了6个项目，一个SDK。自己承担了项目管理的角色，从只有开发任务到沟通需求，业务流程，接口，整个上班时间都被填充的完完整整。</p>
-<p>最后统计2016整个年度的加班时间将近400个小时，成了整个团队中加班最多的 :(</p>
-<h3 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h3><p>4月份和女朋友回家拿了结婚证，步入了婚姻的第一步。</p>
-<p>6月份收到收房通知，因为一些小纠纷，跟着维权队伍打了一次酱油，最后还是不了了之。</p>
-<p>7月份就开始和老婆一起看装修公司， 确定各种风格。</p>
-<p>8月份开始着手装修，每周早7点从南边坐车一个小时到西边，然后就是一整天，晚上10点钟到家。</p>
-<p>10月份国庆恰逢老婆公司内部价格计划出去日本，因为丈母娘住院，只能被迫取消了计划。值得高兴的是很快就康复了。</p>
-<p>11月份的时候，整个装修基本完成，然后就开始了买家具，电器，窗帘。。。的过程，也是跑了无数个地方挑选才买到合适的。</p>
-<p>12月份就开始着手商量过年结婚，然后就是采购物资。。。</p>
-<h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><h4 id="工作上"><a href="#工作上" class="headerlink" title="工作上"></a>工作上</h4><ol>
-<li>开发技术上的提升：经过这一年的iOS开发，接触了更多的项目需求，SDK方案的设计，在技术上相对之前有足够大的进步。从之前的功能实现到了代码的扩展，健壮和结构性清晰。</li>
-<li>沟通上的进步：以前一直不明白自己的表达和听者理解的偏差存在，所以在沟通过程中很容易出现一件事情说第二次或者更多的时候，就很容易上火的情况。当理解了这一点后，也就更加审视自己在表述的是否清楚易于理解，同时也在听者询问的时候更加耐心的解释，这样下来的效果就是沟通很愉快，慢慢自己的耐心也变得更加好了。</li>
-<li>项目进度的把控：之前很多时候都是一个人做一个项目，没有那么多的规划。现在当设计到多人协作的时候，就需要安排好整个需求的权重，考虑到后台以及客户的要求，开发的时间，在经历过了这一整年后, 有了很大的提高。</li>
-<li>抱怨是解决不了问题的：以前自己也总是抱怨工作中这里不合理哪里不合理，同时也带给了同事消极的气氛。 这一年过来，自己几乎没有任何抱怨，只是尽自己力所能及的去解决这些问题，解决不了的问题就提出来，一起解决，实在解决不了的，就提上日程，以后解决。</li>
-<li>从不同的层面看待问题：站在自己和管理层面看问题，站在不同部门来看待问题，站在公司层面来看待问题，让自己能够在问题的处理中也有了更多的思路。</li>
-<li>付出总还是有一些收获的： 感谢这一年辛苦的自己，加薪和年终奖还算过得去。</li>
-</ol>
-<h4 id="生活上"><a href="#生活上" class="headerlink" title="生活上"></a>生活上</h4><ol>
-<li>明天和意外，你永远不知道哪一个先来： 丈母娘的生病突然让人意识到了一点：“父母真的进入了老年时代了”， 病痛也可能会增多，带给我们的不仅仅是精力上的压力，还有经济上的。 </li>
-<li>生活中并不总是有那么多坏人，好人还是多数： 和老婆总结的时候，发现这一年接触到的都是些很友善人。在书上读到一句类似“他们对你的态度很多时候间接的就反应出了你对他们的态度”。 我想应该是老婆很友善带来的效应吧。</li>
-<li>你偷懒了，多嘴了，肉会反应出来的：这一年骑车还是在继续，夏天的时候还是在游泳，所以夏天一直没有胖，但是一进入冬天，感觉真个人都不好了，骑车减少了，游泳就不超过5次，也管不住自己的嘴，一个冬天涨了10斤肉。</li>
-<li>你经历过的痛苦，最终将会有所回报：2年前自己去做了牙齿矫正，一直戴着牙套2年整，过程的痛苦没有经历过的人是不能了解的，但是过年前当取掉牙套以后，感觉这2年的痛真的没有白挨，对比一下矫正前后的图片，有那种热泪盈眶的充冲动</li>
-<li>如果觉得看书没用，那可能是因为看的太少：没有统计这一年看了多少本书，更多的是偏向经济方面的(突然就对这个产生了兴趣)，才发现原来自己不知道的东西那么多，多到让人羞愧</li>
-<li>贵就是好（前提是不被烧）：所有的东西都可以用这个来衡量，没有例外，至少我当前这么认为</li>
-</ol>
-<h3 id="期望"><a href="#期望" class="headerlink" title="期望"></a>期望</h3><h4 id="工作上-1"><a href="#工作上-1" class="headerlink" title="工作上"></a>工作上</h4><ol>
-<li>能够更多的注重产品细节提高效率</li>
-<li>加薪和期权不能少</li>
-<li>技术面更广</li>
-</ol>
-<h4 id="生活上-1"><a href="#生活上-1" class="headerlink" title="生活上"></a>生活上</h4><ol>
-<li>5.1在自家的婚礼完美举办</li>
-<li>继续坚持骑行，游泳，阅读</li>
-<li>扩大自己的社交圈，更多的去沟通分享交流</li>
-<li>多回家看看，给家里老人买一个额外的保险</li>
-<li>争取早点实现自己的雷克萨斯梦</li>
-</ol>
-<p>2017，愿家人平安，顺利。</p>
 
       
     </div>
@@ -992,6 +719,389 @@ NSLog(@&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;finished&quot;);    </code>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">**泛型**</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>**</span><br><span class="line">//在尖括号里写一个名字来创建一个泛型函数或者类型。</span><br></pre></td></tr></table></figure>
 
 <p> After overview basic syntax, I plan practice it into demo. So,Here is a simple demo about show fonts in iOS. You can download it on github<br> <a href="https://github.com/surrenderios/iOSFontsWithSwift" target="_blank" rel="noopener">https://github.com/surrenderios/iOSFontsWithSwift</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Xcode-Auto-Archive" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/29/Xcode-Auto-Archive/" class="article-date">
+  	<time datetime="2015-12-29T04:15:14.000Z" itemprop="datePublished">2015-12-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/29/Xcode-Auto-Archive/">Xcode_Auto_Archive</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>某一天，被告知客户要使用企业账号,要打包100多个iOS客户端的渠道包。刚听到这个消息时候,我是崩溃的。然后还是得打，不是么？</p>
+<p>如果手动打然后一个一个导出来，第一反应就是这TM手都得断吧。跟同事商议一下过后，我说想试试写个脚本来实现自动打包，这样就省去了麻烦，恩 开搞！</p>
+<p>首先语言选择,Mac下不是经常跟shell打交道么，所以就找到了一篇文章,鸟哥的linux私房菜,快速过目<br><a href="http://vbird.dic.ksu.edu.tw/linux_basic/0340bashshell-scripts.php#script" target="_blank" rel="noopener">http://vbird.dic.ksu.edu.tw/linux_basic/0340bashshell-scripts.php#script</a>,然后开搞。</p>
+<p>首先明确打包需要的渠道ID,使用UMeng和JPush的都可能见到过ChannelID,那就是修改那个东西就行了。使用Shell修改Xcode工程的plist文件,然后打包时候读取不就搞定了么。</p>
+<ol>
+<li>在plist文件中简历ChannelID字段,指定默认的值为App Store.</li>
+<li>在代码中读取该值,并且传递给Umeng的统计.</li>
+</ol>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//友盟统计</span></span><br><span class="line"> <span class="comment">//channelId配置到plist文件,便于打渠道包和修改</span></span><br><span class="line"> NSString *channelId;</span><br><span class="line"> NSBundle *bundle = [NSBundle mainBundle];</span><br><span class="line"> NSString *channelIdString = [bundle <span class="string">pathForResource:</span>@<span class="string">"info"</span><span class="string">ofType:</span>@<span class="string">"plist"</span>];</span><br><span class="line"> <span class="keyword">if</span> (channelIdString &amp;&amp; [[NSFileManager defaultManager] <span class="string">fileExistsAtPath:</span>channelIdString])</span><br><span class="line"> &#123;</span><br><span class="line">     NSDictionary *dic = [NSDictionary <span class="string">dictionaryWithContentsOfFile:</span>channelIdString];</span><br><span class="line">     channelId = [dic <span class="string">objectForKey:</span>@<span class="string">"ChannelID"</span>];</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="keyword">if</span> (!channelId || channelId.length == <span class="number">0</span>)</span><br><span class="line"> &#123;</span><br><span class="line">     channelId = @<span class="string">""</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> [MobClick <span class="string">startWithAppkey:</span>kUmengAppKey <span class="string">reportPolicy:</span>BATCH  <span class="string">channelId:</span>channelId];</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li>然后打包导出,不就搞定了么</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#变量配置</span></span><br><span class="line">		<span class="comment">#循环数组,需要打包的渠道名称,以空格隔开</span></span><br><span class="line">		channelArray=(<span class="string">"channelID1"</span> <span class="string">"channelID2"</span>) </span><br><span class="line">		projectName=<span class="string">"工程名字"</span></span><br><span class="line">		schemaName=<span class="string">"工程Schema名字"</span></span><br><span class="line">		channelIDPlistFilePath=<span class="string">"指向存储ChannelID的plist文件路径"</span></span><br><span class="line">		provisoningProfileName=<span class="string">"release的provisoningProfile名字"</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="comment">#获取当前路径</span></span><br><span class="line">		projectPath=<span class="variable">$PWD</span></span><br><span class="line">		</span><br><span class="line">		<span class="built_in">echo</span>  <span class="variable">$projectPath</span></span><br><span class="line">		<span class="built_in">echo</span>  <span class="variable">$projectName</span></span><br><span class="line">		<span class="built_in">echo</span>  <span class="variable">$schemaName</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> ((i=0;i&lt;<span class="variable">$&#123;#channelArray[@]&#125;</span>;i++))</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">			<span class="built_in">echo</span>  <span class="variable">$&#123;channelArray[$i]&#125;</span></span><br><span class="line">			<span class="comment">#清除上次编译</span></span><br><span class="line">			xcodebuild clean -project <span class="variable">$projectName</span>.xcodeproj -configuration Release -alltargets</span><br><span class="line">		</span><br><span class="line">		<span class="comment">#修改plist文件中的key CHANNELID,key只需要和下面的保持一致</span></span><br><span class="line">		/usr/libexec/PlistBuddy -c <span class="string">"set :ChannelID <span class="variable">$&#123;channelArray[$i]&#125;</span>"</span> <span class="variable">$channelIDPlistFilePath</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">#编译</span></span><br><span class="line">		xcodebuild archive -project <span class="variable">$projectName</span>.xcodeproj -scheme <span class="variable">$schemaName</span>  -archivePath <span class="variable">$projectName</span>.xcarchive</span><br><span class="line">		</span><br><span class="line">		<span class="comment">#生成ipa</span></span><br><span class="line">		xcodebuild -exportArchive -archivePath <span class="variable">$projectName</span>.xcarchive -exportPath <span class="variable">$projectName_</span><span class="variable">$&#123;channelArray[$i]&#125;</span> -exportFormat ipa -exportProvisioningProfile <span class="string">"<span class="variable">$provisoningProfileName</span>"</span></span><br><span class="line">		<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+
+<ol start="4">
+<li>接下来就是执行了,打开你的terminal,输入 <strong>cd 工程路径</strong></li>
+<li>然后回车 输入 <strong>sh 拖入脚本</strong>,再回车，就静静的等待打包完成吧。 </li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Objective-C-Programming-Guide" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/29/Objective-C-Programming-Guide/" class="article-date">
+  	<time datetime="2015-12-29T04:14:09.000Z" itemprop="datePublished">2015-12-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/29/Objective-C-Programming-Guide/">Objective-C_Programming_Guide</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><p><strong>采用驼峰命名法,长度为可读性高和同时能够防止命名冲突为佳</strong></p>
+<h3 id="常量命名"><a href="#常量命名" class="headerlink" title="常量命名"></a>常量命名</h3><pre><code>//常量命名前面加上小写字母&apos;k&apos;开头作为标记，如
+static const NSTimeInterval kDropDownAnimationDuration = 0.5;
+
+//作为NSDictionary或者NSNotificationCenter以及其对象的Key值时候,最好加上&apos;const&apos;防止被修改
+NSString *const UIApplicationDidFinishedLaunchNotification = @&quot;UIApplicationDidFinishedLaunchNotification&quot;</code></pre><h3 id="变量和对象命名"><a href="#变量和对象命名" class="headerlink" title="变量和对象命名"></a>变量和对象命名</h3><h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><pre><code>//变量命名推荐采用 修饰作用 + 类型
+UILabel *episodeNameLabel;
+UIButton *showEpisodeDetailInfoButton;
+
+//如果不能通过名字比较准确说明作用的,可以添加简洁注释
+UIView *_topContainerView; //顶部3个按钮的容器View</code></pre><h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><pre><code>//局部变量,可稍微简单些,但是尽量避免出现temp,view1,view2等很模糊的名字</code></pre><h4 id="对象命名"><a href="#对象命名" class="headerlink" title="对象命名"></a>对象命名</h4><pre><code>//对象命名时注意属性,私有熟悉尽量不在.h 文件中暴露,对.h是否加readonly等不作强制性要求
+@property (nonatomic, copy,) NSString *deviceNamestring;</code></pre><h3 id="枚举命名"><a href="#枚举命名" class="headerlink" title="枚举命名"></a>枚举命名</h3><pre><code>//枚举名字命名时候加上类名前缀
+//枚举类型命名是需要类名为前缀并且加上操作的说明
+typedef NS_ENUM(NSUInteger, VODPlayType)
+{
+    VODPlayTypeSoapOpera = 1, //连续剧
+    VODPlayTypeVarity = 2, //综艺
+    VODPlayTypeMovie = 3, //电影
+};</code></pre><h3 id="类命名"><a href="#类命名" class="headerlink" title="类命名"></a>类命名</h3><pre><code>//类名名推荐 功能 + superClass, 也可以加上自己的标示符在最前面作为前缀
+MBLoadingView,
+STMovieTableCellView,
+LiveAndLookbackViewController,</code></pre><h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a>方法命名</h3><pre><code>//格式如下,方法名需要能够表达方法作用,参数名字也要能够准确描述参数
+- (void)chooseLookBackDay:(UIButton *)lookBackDayBtn
+{
+
+}
+
+//两个方法采用一行空格隔开
+- (void)changelookBackDayPageBy:(UIButton *)lookBackDayBtn
+{
+
+}
+//模块作用相似的多个方法放在尽量写在一起</code></pre><h2 id="编码规范"><a href="#编码规范" class="headerlink" title="编码规范"></a>编码规范</h2><p>主要的目的就是 ‘易阅读,易维护’,最后再说易复用和扩展的问题</p>
+<h3 id="判定nil或者YES-NO"><a href="#判定nil或者YES-NO" class="headerlink" title="判定nil或者YES/NO"></a>判定nil或者YES/NO</h3><pre><code>//推荐
+if (videoObject){...}
+if (!videoObject){...}
+
+//不推荐
+if (videoObject == nil){...}
+
+//推荐
+if (isValidatePhoneNumber){...}
+
+//不推荐
+if (isValidatePhoneNumber == YES){...}</code></pre><h3 id="条件赋值"><a href="#条件赋值" class="headerlink" title="条件赋值"></a>条件赋值</h3><pre><code>//涉及到三目的时候,尽量将条件括起来
+isValidatePhoneNumber = (x &gt; 0) ? YES : NO;
+
+//如果设计到判定条件较长的,不推荐使用三目运算,可读性较差,例如:
+self.name = ([object.name rangeOfString:@&quot;x&quot;].length != 0) ? [object.name subStringToIndex:5] : @&quot;name&quot;;</code></pre><h3 id="BOOL赋值"><a href="#BOOL赋值" class="headerlink" title="BOOL赋值"></a>BOOL赋值</h3><pre><code>//推荐
+BOOL isAdult = age &gt; 18;
+
+//不推荐
+BOOL isAdult;
+if (age &gt; 19) {
+   isAdult = YES;
+}else{
+   isAdult = NO;
+}</code></pre><h3 id="复杂的条件判断"><a href="#复杂的条件判断" class="headerlink" title="复杂的条件判断"></a>复杂的条件判断</h3><pre><code>//推荐
++ (BOOL)isEmptyString:(NSString *)string;
+{
+    if (!string) return YES;
+    if ([string isKindOfClass:[NSNull class]]) return YES;
+    if (string.length == 0) return YES;
+
+    return NO;
+}
+
+//不推荐
++ (BOOL)isEmptyString:(NSString *)string;
+{
+    if (!string || [string isKindOfClass:[NSNull class]] || string.length == 0)
+    {
+        return YES;
+    }
+    return NO;
+}</code></pre><h3 id="嵌套判断"><a href="#嵌套判断" class="headerlink" title="嵌套判断"></a>嵌套判断</h3><pre><code>//推荐
+{
+    if (!user.UserName) return NO;
+    if (!user.Password) return NO;
+    if (!user.Email) return NO;
+
+    return YES;
+}
+
+//不推荐
+{
+    BOOL isValid = NO;
+    if (user.UserName)
+    {
+
+        if (user.Password)
+        {
+            ！！！只有一行语句的时候注意括号千万不能省,一定要写上
+            if (user.Email) isValid = YES;
+        }
+
+    }
+    return isValid;
+}</code></pre><h2 id="注释规范"><a href="#注释规范" class="headerlink" title="注释规范"></a>注释规范</h2><h3 id="接口或方法注释"><a href="#接口或方法注释" class="headerlink" title="接口或方法注释"></a>接口或方法注释</h3><p><strong>外部接口必须添加注释</strong> </p>
+<p>快速注释插件可使用<a href="https://github.com/onevcat/VVDocumenter-Xcode" target="_blank" rel="noopener">https://github.com/onevcat/VVDocumenter-Xcode</a></p>
+<pre><code>/**
+ *  首页每个分类的热门推荐列表
+ *
+ *  @param frame          列表大小
+ *  @param media_asset_id 分类id
+ *  @param category_id    栏目id
+ *
+ *  @return 启动了网络请求的列表
+ */
+- (id)initWithFrame:(CGRect)frame mediaAssetId:(NSString *)media_asset_id categoryId:(NSString *)category_id;</code></pre><h3 id="Bug修改注释"><a href="#Bug修改注释" class="headerlink" title="Bug修改注释"></a>Bug修改注释</h3><p><strong>涉及到逻辑修改的必须加上注释</strong></p>
+<pre><code>//例如
+//begin 姓名 10-22
+//修改原因
+...
+... (中间添加修改的代码)
+...
+//end</code></pre><h3 id="SVN代码提交注释"><a href="#SVN代码提交注释" class="headerlink" title="SVN代码提交注释"></a>SVN代码提交注释</h3><pre><code>项目版本号(我们开发的小版本号)和修改的内容
+
+如:
+
+V 1.5.2
+
+1. 修改了XXXX
+2. 添加了XXXX</code></pre><h2 id="资源添加"><a href="#资源添加" class="headerlink" title="资源添加"></a>资源添加</h2><h3 id="图片添加"><a href="#图片添加" class="headerlink" title="图片添加"></a>图片添加</h3><p><strong>同一模块图片放在同一个文件夹下</strong><br>图片添加时候需要根据具体用途命名,例如当前的图片属于主页Home,则推荐命名为 <strong>类名 + 作用</strong>,</p>
+<pre><code>如:
+Home_Back_Image.png
+Home_Play_Image.png</code></pre><h3 id="多语言添加"><a href="#多语言添加" class="headerlink" title="多语言添加"></a>多语言添加</h3><p>模块间使用空格隔开,并且添加简单说明</p>
+<pre><code>//推荐
+&quot;Share_Tips&quot; = &quot;...&quot;;
+&quot;Sms_Message_Send_OK&quot;=&quot;...&quot;;
+&quot;Sms_Message_Send_Failed&quot;=&quot;...&quot;;
+
+//购买流量
+&quot;Open_Traffic_Tips&quot; = &quot;...&quot;;
+&quot;Open&quot; = &quot;...&quot;;</code></pre><h3 id="第三方开源库添加"><a href="#第三方开源库添加" class="headerlink" title="第三方开源库添加"></a>第三方开源库添加</h3><p>添加到统一的文件夹中,使用group包裹.</p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p><a href="http://www.cocoachina.com/ios/20150508/11780.html" target="_blank" rel="noopener">http://www.cocoachina.com/ios/20150508/11780.html</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Bomb-SDK" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/03/Bomb-SDK/" class="article-date">
+  	<time datetime="2015-11-03T04:16:01.000Z" itemprop="datePublished">2015-11-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/03/Bomb-SDK/">Bomb_SDK</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>半年时间一直没有更新过了,中间除了进了新公司后很忙以外,偶尔周末空闲的时候都拿来骑车游泳了(多锻炼真的不错),或者就是忙别的事情了。其中骑车应该算是最多的了,和小伙伴们一起组建了本地的一支车队,为了更好的宣传,队伍中的小伙伴都是各自做出了不小的贡献。为了更加专业的装逼，我决定用自己的业余时间做一款车队自己的App。</p>
+<p>其中最主要的问题可能服务器了,如果为了这个自己去搭建一个服务器做这块本身也没有相关的经验,后来网络搜索的时候，突然发现有Bmob这个东西，粗略一看，已经完全能够符合我的要求了,接下来就是开干.</p>
+<p>Bmob网址: <a href="http://www.bmob.cn" target="_blank" rel="noopener">http://www.bmob.cn</a></p>
+<h2 id="后台文件添加和下载"><a href="#后台文件添加和下载" class="headerlink" title="后台文件添加和下载"></a>后台文件添加和下载</h2><h3 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h3><p>按照快速入门的文档，注册账号-&gt;后台创建应用-&gt;然后下载SDK-&gt;添加相应的库-&gt;引入头文件-&gt;再在</p>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+   [Bmob registerWithAppKey:@&quot;申请的Application ID&quot;];
+   return YES;
+}</code></pre><p>中添加相应的AppKey,至此,基本所有的初始化工作都已经完成了,然后就是添加数据了.</p>
+<h3 id="后台数据添加"><a href="#后台数据添加" class="headerlink" title="后台数据添加"></a>后台数据添加</h3><p>刚开始没有明白后台的”<strong>数据浏览</strong>“ 那儿有什么用，看文档上面的”<strong>添加数据</strong>“接口后就开始在客户端一个一个添加,心里还在想这个也太麻烦了吧。后来才发现网站后台有可编辑数据这个功能。</p>
+<p>在<strong>“数据浏览”-&gt;”添加表”</strong> 就能建立自己需要的数据表了,这个和数据库表一样的表就可以用来保存相关的信息了。然后我很快的在后台添加了相关的小伙伴名字和一些其他信息,就开始在客户端就测试请求。</p>
+<h3 id="客户端数据请求"><a href="#客户端数据请求" class="headerlink" title="客户端数据请求"></a>客户端数据请求</h3><p>SDK中自带的 BmobObject的几个属性肯定满足不了要求,这里又出现了可笑的一幕,我subClass了BmobObject以后,添加了自己的属性,但是每次访问的时候都要使用ObjectForKey:感觉好麻烦,后来看详细文档才发现,可以添加了@synthesize后,直接使用”.”语法访问,这样就方便多了。</p>
+<p>然后就是开始查询了,以获取队员信息为例,</p>
+<pre><code>- (void)requestTeamMates;
+{
+    BmobQuery *bquery = [BmobQuery queryWithClassName:tableName];
+    bquery.cachePolicy = kBmobCachePolicyNetworkElseCache;
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error)
+     {
+         if (array &amp;&amp; array.count != 0)
+         {
+             for (BmobObject *object in array)
+             {
+                 //根据你subClass的对象使用父类的方法从返回的数据创建出自己的对象,就搞定了解析
+                 TeamPersonObject *person = [[TeamPersonObject alloc]initFromBmobObject:object];
+                 [_teamMatesArray addObject:person];
+             }
+         }];
+     }
+}
+
+//PS 此处的TableName一定要跟你在网站后台的表明相对应额,还有上面subclass的BmobObject的属性也要和表里面的字段相对应,这样就能够从网络后台回去到数据了.</code></pre><h3 id="后台文件添加和下载-1"><a href="#后台文件添加和下载-1" class="headerlink" title="后台文件添加和下载"></a>后台文件添加和下载</h3><p>然后就涉及到了一个问题就是我想添加图片,虽然后台的字段中有一个”File”字段,但是一直没有看到哪儿有添加文件的按钮,最后询问他们的技术支持才得知,原来直接点击编辑框就可以添加了,然后就可以上传相关的文件了. 同时也需要在你自己的对象类中添加类型为BmobFile的属性额.这样又顺利的搞定了图片(文件)的问题.</p>
+<h2 id="推送通知"><a href="#推送通知" class="headerlink" title="推送通知"></a>推送通知</h2><p>为了能够做到更加的互动,比如有什么消息能够及时通知相关小伙伴,就准备添加上推送通知这个功能,Bmob的推送功能很简单:</p>
+<p>按照推送的文档先弄好苹果的证书 -&gt; 上传到网站后台 -&gt; 真机测试.</p>
+<p>在后台添加一条消息，点击发送，很顺利的就受到了。</p>
+<h2 id="支付接口"><a href="#支付接口" class="headerlink" title="支付接口"></a>支付接口</h2><p>看到还有提供支付的SDK,顺带也就想玩玩:</p>
+<p><strong>Bmob支付目前只支持支付宝接入</strong></p>
+<p>同样也是按照文档下载SDK -&gt; 添加相关库 -&gt;导入头文件 -&gt;</p>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions方法中使用 [BmobPaySDK registerWithAppKey:@&quot; replace your app key&quot;]; 进行注册。</code></pre><p>然后在网站后台设置你接收钱的支付宝账户,最后在需要支付代理的地方添加支付代理就完成了。</p>
+<p>最后需要注意一点就是:</p>
+<p>支付宝支付是优先跳转至支付包钱包，如果用户有安装支付宝钱包,在跳转支付宝客户端支付的过程中,商户app在后台很可能被系统kill了，因此需要在AppDelegate.m中加入以下代码，以获得回调。</p>
+<pre><code>- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    if ([url.host isEqualToString:@&quot;safepay&quot;]) {
+
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {}];
+        }
+    return YES;
+}</code></pre><p>恩,简单支付就搞定了.</p>
+<p>然后自己测试了一下支付功能,</p>
+<pre><code>BmobPay* bPay = [[BmobPay alloc] init];
+//设置代理
+bPay.delegate = self;
+//设置商品价格、商品名、商品描述    
+[bPay setPrice:priceNum];
+[bPay setProductName:productName];
+[bPay setBody:body];
+//appScheme为创建项目第4步中在URL Schemes中添加的标识
+[bPay setAppScheme:appScheme];
+//调用支付宝支付
+[bPay payInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+    if (isSuccessful) {
+        NSLog(@&quot;支付跳转成功&quot;);
+    } else{
+        NSLog(@&quot;%@&quot;,[error description]);
+    }
+}];</code></pre><p>然后转了10元进去,就转不出来了。。。没有看到网站上面写的<strong>最少每次提取需要100元</strong>,而且要<strong>扣5%的税</strong>。瞬间感觉整个人就崩了,哎，相当于白贴10元了。</p>
+<p>Bmob完全满足了我想要的后台功能,整个添加的过程碰到的问题总结起来应该就是2个</p>
+<p>1: 数据的添加(后台可以添加结果自己手动一个一个客户端添加)和访问(能支持”.”语法访问,自己却使用了ObjectForkey),都怪自己没看完文档</p>
+<p>2: 文件的添加地方没有找到, 后来通过的技术支持指导的(赞一个技术支持,回复非常快)</p>
+<p><strong>总体来说,感谢Bmob,也推荐小伙伴们可以尝试一下,但是不得不吐槽的是收5%的的利</strong></p>
 
       
     </div>
